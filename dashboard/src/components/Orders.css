@@ -1,0 +1,57 @@
+.orders {
+  padding: 30px;
+  background: #f9fbfd;
+  min-height: 80vh;
+}
+
+.orders h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.no-orders {
+  color: gray;
+  font-size: 16px;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.orders-table th,
+.orders-table td {
+  padding: 14px 16px;
+  text-align: left;
+}
+
+.orders-table thead {
+  background-color: #f1f5f9;
+}
+
+.orders-table th {
+  font-weight: 600;
+  color: #555;
+}
+
+.orders-table tbody tr {
+  border-bottom: 1px solid #eee;
+}
+
+.orders-table tbody tr:hover {
+  background-color: #f9fbfd;
+}
+
+.buy-text {
+  color: #1abc9c;
+  font-weight: 600;
+}
+
+.sell-text {
+  color: #e74c3c;
+  font-weight: 600;
+}
