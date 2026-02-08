@@ -23,7 +23,7 @@ function Login() {
       localStorage.setItem("token", res.data.token);
 
       // redirect to dashboard app (port 3001)
-      window.location.href = `http://localhost:3001?token=${res.data.token}`;
+      window.location.href = `https://zerodha-dashboard-srdg.onrender.com?token=${res.data.token}`;
 
     } catch (err) {
       alert(err.response?.data || "Login failed");
