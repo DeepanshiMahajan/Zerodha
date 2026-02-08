@@ -8,7 +8,7 @@ function Home() {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      window.location.href = "http://localhost:3000/login";
+      window.location.href = "https://zerodha-frontend-oh5v.onrender.com/login";
     }
   }, []);
     return (
