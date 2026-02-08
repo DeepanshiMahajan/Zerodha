@@ -12,7 +12,7 @@ const Funds = () => {
     axios
       .get("https://zerodha-backend-cjze.onrender.com/funds")
       .then((res) => {
-        console.log("Funds data:", res.data); // DEBUG: check if data arrives
+        console.log("Funds data:", res.data);
         setFunds(res.data);
         setLoading(false);
       })
@@ -25,6 +25,7 @@ const Funds = () => {
 
   if (loading) return <p>Loading funds...</p>;
   if (error) return <p style={{ color: "red" }}>{error}</p>;
+  if (!funds) return <p>No funds data available.</p>; // safe check
 
   return (
     <>
@@ -44,23 +45,23 @@ const Funds = () => {
           <div className="table">
             <div className="data">
               <p>Available margin:</p>
-              <p className="imp colored">{funds.availableMargin}</p>
+              <p className="imp colored">{funds.availableMargin ?? 0}</p>
             </div>
             <div className="data">
               <p>Used margin:</p>
-              <p className="imp">{funds.usedMargin}</p>
+              <p className="imp">{funds.usedMargin ?? 0}</p>
             </div>
             <div className="data">
               <p>Available cash:</p>
-              <p className="imp">{funds.availableCash}</p>
+              <p className="imp">{funds.availableCash ?? 0}</p>
             </div>
             <div className="data">
               <p>Opening balance:</p>
-              <p className="imp">{funds.openingBalance}</p>
+              <p className="imp">{funds.openingBalance ?? 0}</p>
             </div>
             <div className="data">
               <p>Payin:</p>
-              <p className="imp">{funds.payin}</p>
+              <p className="imp">{funds.payin ?? 0}</p>
             </div>
           </div>
         </div>

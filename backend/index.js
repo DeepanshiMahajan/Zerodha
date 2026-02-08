@@ -10,6 +10,7 @@ const testRoutes = require("./routes/test");
 const { HoldingsModel } = require("./model/HoldingsModel");
 const { PositionsModel } = require("./model/PositionsModel");
 const { OrdersModel } = require("./model/OrdersModel");
+const { FundsModel } = require("./model/FundsModel");
 
 
 const PORT = process.env.PORT || 3002;
@@ -221,15 +222,19 @@ app.get("/allOrders", async (req, res) => {
   res.json(allOrders);
 });
 
-app.get("/funds", (req, res) => {
-  res.json({
-    availableMargin: 4043.10,
-    usedMargin: 3757.30,
-    availableCash: 4043.10,
-    openingBalance: 3736.40,
-    payin: 4064.00
-  });
+
+app.get("/funds", async (req, res) => {
+  try {
+    const funds = await FundsModel.findOne({}).sort({ updatedAt: -1 }); 
+    if (!funds) return res.status(404).json({ message: "Funds not found" });
+    res.json(funds);
+  } catch (err) {
+    console.error("Error fetching funds:", err);
+    res.status(500).json({ message: "Server error" });
+  }
 });
+
+
 
 app.listen(PORT, () => {
     console.log("App Started!");
