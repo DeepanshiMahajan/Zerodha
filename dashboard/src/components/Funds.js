@@ -1,24 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "./Funds.css";
 
 const Funds = () => {
   const [funds, setFunds] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     axios
       .get("https://zerodha-backend-cjze.onrender.com/funds")
       .then((res) => {
+        console.log("Funds data:", res.data); // DEBUG: check if data arrives
         setFunds(res.data);
+        setLoading(false);
       })
       .catch((err) => {
-        console.log("Error fetching funds:", err);
+        console.error("Error fetching funds:", err);
+        setError("Unable to load funds. Please try again.");
+        setLoading(false);
       });
   }, []);
 
-  if (!funds) {
-    return <p>Loading funds...</p>;
-  }
+  if (loading) return <p>Loading funds...</p>;
+  if (error) return <p style={{ color: "red" }}>{error}</p>;
 
   return (
     <>
@@ -34,22 +40,27 @@ const Funds = () => {
 
       <div className="row">
         <div className="col">
-          <span>
-            <p>Equity</p>
-          </span>
-
+          <h2>Equity Funds</h2>
           <div className="table">
             <div className="data">
-              <p>Available margin</p>
+              <p>Available margin:</p>
               <p className="imp colored">{funds.availableMargin}</p>
             </div>
             <div className="data">
-              <p>Used margin</p>
+              <p>Used margin:</p>
               <p className="imp">{funds.usedMargin}</p>
             </div>
             <div className="data">
-              <p>Available cash</p>
+              <p>Available cash:</p>
               <p className="imp">{funds.availableCash}</p>
+            </div>
+            <div className="data">
+              <p>Opening balance:</p>
+              <p className="imp">{funds.openingBalance}</p>
+            </div>
+            <div className="data">
+              <p>Payin:</p>
+              <p className="imp">{funds.payin}</p>
             </div>
           </div>
         </div>
