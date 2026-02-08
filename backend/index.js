@@ -221,6 +221,15 @@ app.get("/allOrders", async (req, res) => {
   res.json(allOrders);
 });
 
+app.get("/funds", (req, res) => {
+  res.json({
+    availableMargin: 4043.10,
+    usedMargin: 3757.30,
+    availableCash: 4043.10,
+    openingBalance: 3736.40,
+    payin: 4064.00
+  });
+});
 
 app.listen(PORT, () => {
     console.log("App Started!");
