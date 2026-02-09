@@ -1,9 +1,11 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
+
+const navigate = useNavigate();
 
 function App() {
-  const handleLogout = () => {
+const handleLogout = () => {
   localStorage.removeItem("token");
-  window.location.href = "https://zerodha-frontend-oh5v.onrender.com/login";
+  navigate("/login"); // Client-side navigation
 };
 
 
