@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
-const navigate = useNavigate();
-
 function App() {
+  const navigate = useNavigate();
+  
 const handleLogout = () => {
   localStorage.removeItem("token");
   navigate("/login"); // Client-side navigation
