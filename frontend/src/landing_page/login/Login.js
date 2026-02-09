@@ -16,14 +16,14 @@ function Login() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "https://zerodha-backend-cjze.onrender.com/api/auth/login",
+        "http://localhost:3002/api/auth/login",
         form
       );
 
       localStorage.setItem("token", res.data.token);
 
       // redirect to dashboard app (port 3001)
-      window.location.href = `https://zerodha-dashboard-srdg.onrender.com?token=${res.data.token}`;
+      window.location.href = `http://localhost:3001?token=${res.data.token}`;
 
     } catch (err) {
       alert(err.response?.data || "Login failed");
@@ -119,7 +119,7 @@ const styles = {
   button: {
     width: "100%",
     padding: "12px",
-    background: "#43e97b",
+    background: "#4388e9",
     color: "#fff",
     border: "none",
     borderRadius: "6px",
@@ -144,7 +144,7 @@ const styles = {
     color: "#555",
   },
   link: {
-    color: "#43e97b",
+    color: "#251e61",
     textDecoration: "none",
     fontWeight: "bold",
     marginLeft: "5px",

@@ -14,7 +14,7 @@ function Signup() {
     e.preventDefault();
     try {
       // Note: backend port 3002 and route /api/auth/signup
-      await axios.post("https://zerodha-backend-cjze.onrender.com/api/auth/signup", form);
+      await axios.post("http://localhost:3002/api/auth/signup", form);
       alert("Signup successful! Please login.");
       navigate("/login");
     } catch (err) {
@@ -72,7 +72,7 @@ const styles = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    background: "linear-gradient(to right, #43e97b, #38f9d7)", // Zerodha-style green gradient
+    background: "#f5f6fa", // Zerodha-style green gradient
     fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
   },
   card: {
@@ -115,7 +115,7 @@ const styles = {
   button: {
     width: "100%",
     padding: "12px",
-    background: "#43e97b",
+    background: "#4372e9",
     color: "#fff",
     border: "none",
     borderRadius: "6px",
@@ -134,7 +134,7 @@ const styles = {
     color: "#555",
   },
   link: {
-    color: "#43e97b",
+    color: "#251e61",
     textDecoration: "none",
     fontWeight: "bold",
     marginLeft: "5px",
