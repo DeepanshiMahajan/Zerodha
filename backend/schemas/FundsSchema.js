@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const { Schema } = require("mongoose");
 
-const FundsSchema = new mongoose.Schema({
+const FundsSchema = new Schema({
   availableMargin: Number,
   usedMargin: Number,
   availableCash: Number,
@@ -9,3 +9,4 @@ const FundsSchema = new mongoose.Schema({
 }, { timestamps: true }); // <-- adds createdAt and updatedAt
 
 module.exports = { FundsSchema };
+

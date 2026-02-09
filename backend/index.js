@@ -234,6 +234,24 @@ app.get("/funds", async (req, res) => {
   }
 });
 
+// TEMP: Add test funds
+app.get("/addFunds", async (req, res) => {
+  try {
+    const newFunds = new FundsModel({
+      availableMargin: 5000,
+      usedMargin: 2000,
+      availableCash: 3000,
+      openingBalance: 10000,
+      payin: 0
+    });
+
+    await newFunds.save();
+    res.send("Funds added!");
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Error adding funds");
+  }
+});
 
 
 app.listen(PORT, () => {

@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { FundsSchema } = require("../schemas/FundsSchema");
 
-const FundsModel = mongoose.model("fund", FundsSchema);
+const FundsModel = mongoose.model("Fund", FundsSchema);
 
 module.exports = { FundsModel };
