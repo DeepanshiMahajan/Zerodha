@@ -33,11 +33,6 @@ function App() {
               <h3>Orders</h3>
               <p>View your trades</p>
             </div>
-
-            <div style={styles.box}>
-              <h3>Funds</h3>
-              <p>Manage your balance</p>
-            </div>
           </div>
         </div>
       </div>
