@@ -10,7 +10,6 @@ const testRoutes = require("./routes/test");
 const { HoldingsModel } = require("./model/HoldingsModel");
 const { PositionsModel } = require("./model/PositionsModel");
 const { OrdersModel } = require("./model/OrdersModel");
-const { FundsModel } = require("./model/FundsModel");
 
 
 const PORT = process.env.PORT || 3002;
@@ -220,37 +219,6 @@ app.post("/newOrder", async (req, res) => {
 app.get("/allOrders", async (req, res) => {
   let allOrders = await OrdersModel.find({});
   res.json(allOrders);
-});
-
-
-app.get("/funds", async (req, res) => {
-  try {
-    const funds = await FundsModel.findOne({}).sort({ updatedAt: -1 }); 
-    if (!funds) return res.status(404).json({ message: "Funds not found" });
-    res.json(funds);
-  } catch (err) {
-    console.error("Error fetching funds:", err);
-    res.status(500).json({ message: "Server error" });
-  }
-});
-
-// TEMP: Add test funds
-app.get("/addFunds", async (req, res) => {
-  try {
-    const newFunds = new FundsModel({
-      availableMargin: 5000,
-      usedMargin: 2000,
-      availableCash: 3000,
-      openingBalance: 10000,
-      payin: 0
-    });
-
-    await newFunds.save();
-    res.send("Funds added!");
-  } catch (err) {
-    console.error(err);
-    res.status(500).send("Error adding funds");
-  }
 });
 
 

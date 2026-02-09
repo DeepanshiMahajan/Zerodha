@@ -1,45 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import "./Funds.css";
 
-const BACKEND_URL = "https://zerodha-backend-cjze.onrender.com";
-
 const Funds = () => {
-  const [funds, setFunds] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchFunds = async () => {
-      try {
-        const res = await axios.get(`${BACKEND_URL}/funds`, {
-          withCredentials: true, // send cookies if backend requires auth
-        });
-
-        console.log("Funds data:", res.data); // debug log
-        setFunds(res.data);
-        setLoading(false);
-      } catch (err) {
-        console.error("Error fetching funds:", err);
-        setError(
-          err.response?.status === 401
-            ? "Please log in to view your funds."
-            : "Unable to load funds. Please try again."
-        );
-        setLoading(false);
-      }
-    };
-
-    fetchFunds();
-  }, []);
-
-  if (loading) return <p>Loading funds...</p>;
-  if (error) return <p style={{ color: "red" }}>{error}</p>;
-  if (!funds) return <p>No funds data available.</p>;
+  // Hardcoded fund values
+  const funds = {
+    availableMargin: 5000,
+    usedMargin: 2000,
+    availableCash: 3000,
+    openingBalance: 10000,
+    payin: 0,
+    span: 0,
+    deliveryMargin: 0,
+    exposure: 0,
+    optionsPremium: 0,
+    collateralLiquid: 0,
+    collateralEquity: 0,
+    totalCollateral: 0,
+  };
 
   return (
     <div className="funds-container">
+      {/* Header with Add / Withdraw */}
       <div className="funds-header">
         <p>Instant, zero-cost fund transfers with UPI</p>
         <Link to="/add-funds" className="btn btn-green">
@@ -50,32 +32,72 @@ const Funds = () => {
         </Link>
       </div>
 
+      {/* Equity Funds Table */}
       <div className="funds-table">
         <h2>Equity Funds</h2>
+
         <div className="funds-row">
           <div className="funds-col">
             <div className="data">
               <p>Available Margin:</p>
-              <p className="imp colored">{funds.availableMargin ?? 0}</p>
+              <p className="imp colored">{funds.availableMargin}</p>
             </div>
             <div className="data">
               <p>Used Margin:</p>
-              <p className="imp">{funds.usedMargin ?? 0}</p>
+              <p className="imp">{funds.usedMargin}</p>
             </div>
             <div className="data">
               <p>Available Cash:</p>
-              <p className="imp">{funds.availableCash ?? 0}</p>
+              <p className="imp">{funds.availableCash}</p>
             </div>
             <div className="data">
               <p>Opening Balance:</p>
-              <p className="imp">{funds.openingBalance ?? 0}</p>
+              <p className="imp">{funds.openingBalance}</p>
             </div>
             <div className="data">
               <p>Payin:</p>
-              <p className="imp">{funds.payin ?? 0}</p>
+              <p className="imp">{funds.payin}</p>
+            </div>
+
+            <div className="data">
+              <p>SPAN:</p>
+              <p className="imp">{funds.span}</p>
+            </div>
+            <div className="data">
+              <p>Delivery Margin:</p>
+              <p className="imp">{funds.deliveryMargin}</p>
+            </div>
+            <div className="data">
+              <p>Exposure:</p>
+              <p className="imp">{funds.exposure}</p>
+            </div>
+            <div className="data">
+              <p>Options Premium:</p>
+              <p className="imp">{funds.optionsPremium}</p>
+            </div>
+
+            <div className="data">
+              <p>Collateral (Liquid funds):</p>
+              <p className="imp">{funds.collateralLiquid}</p>
+            </div>
+            <div className="data">
+              <p>Collateral (Equity):</p>
+              <p className="imp">{funds.collateralEquity}</p>
+            </div>
+            <div className="data">
+              <p>Total Collateral:</p>
+              <p className="imp">{funds.totalCollateral}</p>
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Footer with Open Account */}
+      <div className="funds-footer">
+        <p>You don't have a commodity account</p>
+        <Link to="/open-account" className="btn btn-blue">
+          Open Account
+        </Link>
       </div>
     </div>
   );
