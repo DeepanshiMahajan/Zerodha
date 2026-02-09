@@ -12,7 +12,7 @@ const Menu = () => {
 
   const handleLogout = () => {
   localStorage.removeItem("token");
-  window.location.href = "http://localhost:3000/login";
+  window.location.href = "https://zerodha-frontend-4j8m.onrender.com/login";
 };
 
 

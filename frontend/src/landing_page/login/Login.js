@@ -16,14 +16,14 @@ function Login() {
     e.preventDefault();
     try {
       const res = await axios.post(
-        "http://localhost:3002/api/auth/login",
+        "https://zerodha-backend-1rte.onrender.com/api/auth/login",
         form
       );
 
       localStorage.setItem("token", res.data.token);
 
       // redirect to dashboard app (port 3001)
-      window.location.href = `http://localhost:3001?token=${res.data.token}`;
+      window.location.href = `https://zerodha-dashboard-h9tx.onrender.com?token=${res.data.token}`;
 
     } catch (err) {
       alert(err.response?.data || "Login failed");

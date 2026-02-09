@@ -14,7 +14,7 @@ function Signup() {
     e.preventDefault();
     try {
       // Note: backend port 3002 and route /api/auth/signup
-      await axios.post("http://localhost:3002/api/auth/signup", form);
+      await axios.post("https://zerodha-backend-1rte.onrender.com/api/auth/signup", form);
       alert("Signup successful! Please login.");
       navigate("/login");
     } catch (err) {
